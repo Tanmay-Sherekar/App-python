@@ -1,29 +1,36 @@
 pipeline {
-  agent any
+    agent any
 
-  stages {
-    stage('clone repository'){
-      steps {
-        git 'https://github.com/Tanmay-Sherekar/App-python.git'
-      }
-    }
+    stages {
 
-    stage('Install dependencies') {
-      steps {
-        sh 'pip3 install -r requirements.txt'
-      }
-    }
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/Tanmay-Sherekar/App-python.git'
+            }
+        }
 
-    stage('Run Tests') {
-      steps {
-        sh 'pytest'
-      }
-    }
+        stage('Install Python') {
+            steps {
+                sh 'python3 --version'
+            }
+        }
 
-    stage('Build'){
-      steps {
-        sh 'echo "Build successful"'
-      }
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip3 install -r requirements.txt'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh 'pytest'
+            }
+        }
+
+        stage('Run Application') {
+            steps {
+                sh 'python3 app.py'
+            }
+        }
     }
-  }
 }
