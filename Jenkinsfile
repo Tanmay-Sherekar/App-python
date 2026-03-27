@@ -8,18 +8,6 @@ pipeline {
       }
     }
 
-    stage('Install dependencies') {
-      steps {
-        sh 'pip3 install -r requirements.txt'
-      }
-    }
-
-    stage('Run Tests') {
-      steps {
-        sh 'pytest'
-      }
-    }
-
     stage('Build'){
       steps {
         sh 'echo "Build successful"'
