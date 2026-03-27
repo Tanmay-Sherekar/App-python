@@ -2,15 +2,22 @@ pipeline {
     agent any
 
     stages {
+
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/Tanmay-Sherekar/App-python.git'
+                git 'https://github.com/Tanmay-Sherekar/App-python.git'
             }
         }
 
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
-                sh 'echo "Build successful"'
+                sh 'pip3 install -r requirements.txt'
+            }
+        }
+
+        stage('Run Python App') {
+            steps {
+                sh 'python3 app.py'
             }
         }
     }
